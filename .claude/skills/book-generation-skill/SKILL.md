@@ -1,4 +1,3 @@
-```markdown
 ---
 name: aidd-python-book
 description: "Generate comprehensive Python educational chapters using the AI-Driven Development (AIDD) pedagogical approach. Creates lesson plans that balance manual coding practice with AI tool integration, ensuring students learn syntax, problem-solving, and effective AI collaboration. Use when creating educational content, lesson plans, or book chapters for teaching Python in the AI era. Automatically creates separate markdown files for each topic in a documentation site structure."
@@ -713,4 +712,3 @@ AI exploration, manual practice, and reflection."
 ## Version History
 - v2.0 (2025): Added file generation, sequential learning enforcement, documentation site structure
 - v1.0 (2025): Initial release with 5-phase AIDD framework
-```

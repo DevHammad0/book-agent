@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Skill(book-generation-skill)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

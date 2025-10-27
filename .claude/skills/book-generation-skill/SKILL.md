@@ -1,7 +1,7 @@
 ---
 name: aidd-python-book
 description: "Generate comprehensive Python educational chapters using the AI-Driven Development (AIDD) pedagogical approach. Creates lesson plans that balance manual coding practice with AI tool integration, ensuring students learn syntax, problem-solving, and effective AI collaboration. Use when creating educational content, lesson plans, or book chapters for teaching Python in the AI era. Automatically creates separate markdown files for each topic in a documentation site structure."
-version: 2.0
+version: 2.1
 ---
 
 # AIDD Python Book Chapter Generator
@@ -20,7 +20,7 @@ When generating chapters, create files in this structure:
 
 ```
 modern-python/
-├── index.md                          # Main navigation/table of contents
+├── README.md                        # Home page with navigation and course overview
 ├── 01-getting-started.md            # Week 1: Setup and basics
 ├── 02-variables-and-types.md        # Week 2: Variables
 ├── 03-conditionals.md               # Week 3: If/else
@@ -32,8 +32,7 @@ modern-python/
 ├── 09-error-handling.md             # Week 9: Try/except
 ├── 10-oop-basics.md                 # Week 10: Classes
 ├── 11-oop-advanced.md               # Week 11: Inheritance
-├── 12-modules-packages.md           # Week 12: Imports
-└── README.md                        # Project overview
+└── 12-modules-packages.md           # Week 12: Imports
 ```
 
 ### File Generation Rules
@@ -65,6 +64,24 @@ modern-python/
    - Every file follows same AIDD 5-phase structure
    - Same heading hierarchy
    - Same assessment format
+
+6. **Student-Focused Content Only**
+   - Content is for students learning Python
+   - Do NOT include "Teaching Notes" or "Instructor Notes" sections
+   - Do NOT include pedagogical advice for teachers
+   - Write directly to the student audience
+   - Keep content practical and actionable
+
+## Core AIDD Philosophy
+
+**The Five-Phase Learning Framework:**
+1. **Manual Concept Discovery** - Build foundational understanding through hands-on coding
+2. **AI Exploration & Comparison** - Expand perspective by seeing multiple approaches
+3. **Reverse Engineering & Debugging** - Cement syntax through problem-solving
+4. **Creative AI Collaboration** - Apply knowledge with AI assistance
+5. **Manual Reinforcement Challenge** - Ensure independence from AI tools
+
+**Key Principle:** Manual practice builds understanding → AI expands perspective → Debugging cements syntax → Reflection builds mastery
 
 ## When to Use This Skill
 
@@ -124,30 +141,73 @@ For each topic, create a complete markdown file:
 6. Assessment rubric
 7. Navigation (Previous | Home | Next chapter links)
 
-### Step 4: Update Index File
+### Step 4: Update README File
 
-After generating each chapter, update `index.md` with:
+After generating each chapter, update `README.md` with:
 - Chapter number and title
 - Brief description
 - Status (✅ Complete, ⏳ In Progress, ⬜ Planned)
-- Link to the file
-
-### Step 5: Maintain README.md
-
-Keep README.md updated with:
-- Total chapters completed
-- How to use the documentation
-- Suggested learning path
-- Prerequisites for starting
+- Direct link to the file
+- Course navigation with all chapters listed
 
 ## File Template Structure
 
 Each generated chapter file should follow this structure:
 
+## Chapter Generation Workflow
+
+### IMPORTANT: File Generation Process
+
+When a user requests a chapter, follow these steps:
+
+**Step A: Determine Chapter Number**
+- Ask user what chapter number this is (or infer from topic sequence)
+- Check what topics have been covered previously
+- Identify prerequisites
+
+**Step B: Check Prerequisites**
+- List what concepts must be already covered
+- Verify no forward references will be made
+- Plan what to explain inline if needed
+
+**Step C: Generate Complete File**
+- Create file with proper naming: `##-topic-name.md`
+- Include ALL content (no "see templates" placeholders)
+- Write complete, runnable code examples
+- Add navigation links
+
+**Step D: Save to Directory**
+- Use `create_file` tool to write to specified directory
+- Path format: `/home/claude/[directory-name]/##-topic-name.md`
+- Then copy to outputs: `/mnt/user-data/outputs/[directory-name]/`
+
+**Step E: Update Index**
+- Update or create `index.md` in the same directory
+- Add new chapter to table of contents
+- Mark as complete
+
+**Example Workflow:**
+```
+User: "Create Chapter 3 on loops in modern-python directory"
+
+Claude:
+1. Determines: Chapter 3, topic is loops
+2. Prerequisites: Chapters 1-2 (variables, conditionals)
+3. Generates complete 03-loops.md file
+4. Saves to /home/claude/modern-python/03-loops.md
+5. Copies to /mnt/user-data/outputs/modern-python/
+6. Updates README.md with Chapter 3
+7. Provides download link
+```
+
+### Each Generated File Must Include:
+
+### Each Generated File Must Include:
+
 ```markdown
 # Chapter [N]: [Topic Name] in the AI Era
 
-> **Navigation:** [← Previous: Chapter [N-1]](./[prev-file].md) | [Home](./index.md) | [Next: Chapter [N+1] →](./[next-file].md)
+> **Navigation:** [← Previous: Chapter [N-1]](./[prev-file].md) | [📚 Home](./README.md) | [Next: Chapter [N+1] →](./[next-file].md)
 
 ## 📋 Chapter Overview
 
@@ -261,57 +321,11 @@ In **Chapter [N+1]: [Next Topic]**, you'll learn:
 - [Preview 2]
 - [Preview 3]
 
-> **Navigation:** [← Previous: Chapter [N-1]](./[prev-file].md) | [Home](./index.md) | [Next: Chapter [N+1] →](./[next-file].md)
+> **Navigation:** [← Previous: Chapter [N-1]](./[prev-file].md) | [📚 Home](./README.md) | [Next: Chapter [N+1] →](./[next-file].md)
 
 ---
 
 *Part of the Modern Python with AIDD curriculum*
-```
-
-## Chapter Generation Workflow
-
-### IMPORTANT: File Generation Process
-
-When a user requests a chapter, follow these steps:
-
-**Step A: Determine Chapter Number**
-- Ask user what chapter number this is (or infer from topic sequence)
-- Check what topics have been covered previously
-- Identify prerequisites
-
-**Step B: Check Prerequisites**
-- List what concepts must be already covered
-- Verify no forward references will be made
-- Plan what to explain inline if needed
-
-**Step C: Generate Complete File**
-- Create file with proper naming: `##-topic-name.md`
-- Include ALL content (no "see templates" placeholders)
-- Write complete, runnable code examples
-- Add navigation links
-
-**Step D: Save to Directory**
-- Use `create_file` tool to write to specified directory
-- Path format: `/home/claude/[directory-name]/##-topic-name.md`
-- Then copy to outputs: `/mnt/user-data/outputs/[directory-name]/`
-
-**Step E: Update Index**
-- Update or create `index.md` in the same directory
-- Add new chapter to table of contents
-- Mark as complete
-
-**Example Workflow:**
-```
-User: "Create Chapter 3 on loops in modern-python directory"
-
-Claude:
-1. Determines: Chapter 3, topic is loops
-2. Prerequisites: Chapters 1-2 (variables, conditionals)
-3. Generates complete 03-loops.md file
-4. Saves to /home/claude/modern-python/03-loops.md
-5. Copies to /mnt/user-data/outputs/modern-python/
-6. Updates index.md
-7. Provides download link
 ```
 
 ### Step 1: Identify the Topic and Context
@@ -507,17 +521,6 @@ Standard 10-point rubric structure:
 | Debugging reasoning | Clear identification and fix of logic errors | 2 |
 | Reflection clarity | Insight into what AI helped explain | 2 |
 
-## Core AIDD Philosophy
-
-**The Five-Phase Learning Framework:**
-1. **Manual Concept Discovery** - Build foundational understanding through hands-on coding
-2. **AI Exploration & Comparison** - Expand perspective by seeing multiple approaches
-3. **Reverse Engineering & Debugging** - Cement syntax through problem-solving
-4. **Creative AI Collaboration** - Apply knowledge with AI assistance
-5. **Manual Reinforcement Challenge** - Ensure independence from AI tools
-
-**Key Principle:** Manual practice builds understanding → AI expands perspective → Debugging cements syntax → Reflection builds mastery
-
 ## Topic-Specific Guidance
 
 ### Common Python Topics and Key Focus Areas
@@ -577,6 +580,9 @@ Standard 10-point rubric structure:
 - **Time-box each phase** - keeps lesson moving
 - **Require manual completion** in Phase 5 - non-negotiable
 - **Balance breadth and depth** - don't overwhelm with too many concepts
+- **Write directly to students** - use "you" and "your", not "students" or "they"
+- **Keep content practical** - focus on what students need to learn
+- **Update README.md** - not index.md, README is the home page
 
 ### Don'ts ❌
 - **Don't skip Phase 1** - manual foundation is critical
@@ -586,6 +592,8 @@ Standard 10-point rubric structure:
 - **Don't allow AI in Phase 5** - defeats the purpose
 - **Don't forget reflection** - metacognition is key to learning
 - **Don't assume prior AI experience** - teach prompting explicitly
+- **Don't include teaching notes** - this is student documentation, not instructor guide
+- **Don't write for instructors** - write for learners
 
 ## Example Prompts for Content Generation
 
@@ -638,9 +646,11 @@ Before delivering a chapter, verify:
 - [ ] Phase 5 explicitly prohibits AI use
 - [ ] Homework has all 3 components
 - [ ] Assessment rubric totals 10 points
-- [ ] Teaching notes provide instructor guidance
 - [ ] Code examples are complete and runnable
 - [ ] Timing adds up to ~90 minutes
+- [ ] No teaching notes or instructor-specific content (student-facing only)
+- [ ] Content written directly to students
+- [ ] All navigation links point to README.md (not index.md)
 
 ## Advanced Features
 
@@ -710,5 +720,4 @@ AI exploration, manual practice, and reflection."
 ```
 
 ## Version History
-- v2.0 (2025): Added file generation, sequential learning enforcement, documentation site structure
 - v1.0 (2025): Initial release with 5-phase AIDD framework

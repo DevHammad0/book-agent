@@ -10,12 +10,13 @@ Welcome to the Modern Python course using AI-Driven Development (AIDD) pedagogy.
 |---|---------|-------------|--------|
 | 1 | [Getting Started with Python](./01-getting-started.md) | Installation, print(), REPL vs scripts, debugging basics | ✅ Complete |
 | 2 | [Variables and Data Types](./02-variables-and-types.md) | Storing info, strings, numbers, booleans, type conversion | ✅ Complete |
+| 3 | [Conditionals](./03-conditionals.md) | If/elif/else, boolean logic, comparisons, and/or/not | ✅ Complete |
 
 ### Planned Chapters ⏳
 
 | # | Chapter | Description | Status |
 |---|---------|-------------|--------|
-| 3 | Conditionals | If/elif/else, boolean logic, comparisons | ⏳ Planned |
+| 4 | Loops | For and while loops, range(), break, continue | ⏳ Planned |
 | 4 | Loops | For and while loops, range(), break, continue | ⏳ Planned |
 | 5 | Functions | Defining functions, parameters, return values | ⏳ Planned |
 | 6 | Lists | Creating, indexing, methods, list comprehensions | ⏳ Planned |
